@@ -61,7 +61,7 @@ class CalculatorController extends Controller
     public function calculateSip(Request $request, SipCalculator $calculator)
     {
         $data = $request->validate([
-            'amount' => 'required|numeric|min:100|max:10000000',
+            'amount' => 'required|numeric|min:100|max:1000000',
             'frequency' => 'required|in:monthly,quarterly,yearly',
             'duration' => 'required|integer|min:1|max:480',
             'duration_unit' => 'required|in:years,months',
