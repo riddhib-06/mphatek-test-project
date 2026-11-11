@@ -52,7 +52,6 @@
         </div>
     </div>
 
-    <p class="note">Returns are only an estimate. Actual mutual fund returns are subject to market risk.</p>
 @endsection
 
 @push('scripts')

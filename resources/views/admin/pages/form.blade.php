@@ -3,6 +3,9 @@
 @section('title', ($page->exists ? 'Edit page' : 'Add page').' | Admin | '.config('app.name'))
 @section('body_class', 'admin')
 
+@section('meta')
+    <meta name="robots" content="noindex, nofollow">
+@endsection
 
 @section('content')
     @include('admin.nav')
@@ -40,14 +43,14 @@
                 @error('title') <p class="error">{{ $message }}</p> @enderror
 
                 <label id="slug-text">
-                    URL slug <span class="note">(automatic - made from the title, change only if needed)</span>
+                    URL Slug <span class="note">(automatic - made from the title, change only if needed)</span>
                     <input type="text" name="slug" id="slug" value="{{ old('slug', $page->slug) }}"
                            placeholder="made from the title" data-touched="{{ $page->exists ? '1' : '' }}">
                 </label>
                 <label id="slug-calc" hidden>
                     Calculator
                     <select name="slug" id="slug-select" disabled>
-                        <option value="">Choose...</option>
+                        <option value="">Choose</option>
                         @foreach ($calculatorSlugs as $calc)
                             <option value="{{ $calc }}" @selected(old('slug', $page->slug) === $calc)>{{ Str::headline($calc) }}</option>
                         @endforeach
