@@ -3,9 +3,6 @@
 @section('title', ($page->exists ? 'Edit page' : 'Add page').' | Admin | '.config('app.name'))
 @section('body_class', 'admin')
 
-@section('meta')
-    <meta name="robots" content="noindex, nofollow">
-@endsection
 
 @section('content')
     @include('admin.nav')
@@ -17,7 +14,6 @@
             &middot; {{ $page->sitemapStatus() }}
         </p>
     @endif
-
     <form method="POST" class="admin-form"
           action="{{ $page->exists ? route('admin.pages.update', $page) : route('admin.pages.store') }}">
         @csrf
