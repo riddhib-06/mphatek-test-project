@@ -36,7 +36,7 @@ class LeadController extends Controller
             ->exists();
 
         if ($duplicate) {
-            return back()->with('success', 'We already have your enquiry for '.$product->title.'. Our team will contact you shortly.');
+            return back()->with('info', 'We already have your enquiry for '.$product->title.'. Our team will contact you shortly.');
         }
 
         Lead::create($data + [

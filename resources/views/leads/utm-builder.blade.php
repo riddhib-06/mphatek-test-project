@@ -103,12 +103,19 @@
                 openLink.href = url || '#';
             }
 
-            function copy(text, button) {
-                if (!text) return;
+            function copy(text) {
+                if (!text) {
+                    toastr.warning('Enter a source first.');
+                    return;
+                }
+                if (!navigator.clipboard) {
+                    toastr.error('Copy is not available here. Select the link and press Ctrl+C.');
+                    return;
+                }
                 navigator.clipboard.writeText(text).then(function () {
-                    var label = button.textContent;
-                    button.textContent = 'Copied!';
-                    setTimeout(function () { button.textContent = label; }, 1500);
+                    toastr.success('Link copied to clipboard.');
+                }, function () {
+                    toastr.error('Could not copy. Select the link and press Ctrl+C.');
                 });
             }
 
@@ -122,7 +129,7 @@
             form.addEventListener('change', update);
 
             document.getElementById('utm-copy').addEventListener('click', function () {
-                copy(output.value, this);
+                copy(output.value);
             });
 
             update();

@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', config('app.name'))</title>
     @yield('meta')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     @include('partials.ga4')
@@ -23,10 +24,6 @@
     </header>
 
     <main class="container">
-        @if (session('success'))
-            <div class="alert success">{{ session('success') }}</div>
-        @endif
-
         @yield('content')
     </main>
 
@@ -37,6 +34,7 @@
         </div>
     </footer>
 
+    @include('partials.toastr')
     @stack('scripts')
 </body>
 </html>
